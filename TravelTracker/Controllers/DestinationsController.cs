@@ -56,5 +56,20 @@ namespace TravelTracker.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Delete(int id)
+    {
+      var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
+      return View(thisDestination);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
+      _db.Destinations.Remove(thisDestination);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
