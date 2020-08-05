@@ -21,7 +21,7 @@ namespace TravelTracker
     {
       services.AddMvc();
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<TravelTrackerContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
     public void Configure(IApplicationBuilder app)
