@@ -3,6 +3,7 @@ using TravelTracker.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TravelTracker.Controllers
 {
@@ -70,6 +71,33 @@ namespace TravelTracker.Controllers
       _db.Destinations.Remove(thisDestination);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult AddTraveller(int id)
+    {
+      var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
+      ViewBag.TravellerId = new SelectList(_db.Travellers, "TravellerId", "Name");
+      return View(thisDestination);
+    }
+
+    [HttpPost]
+    public ActionResult AddTraveller(Destination destination, int TravellerId)
+    {
+      if (TravellerId != 0)
+      {
+        _db.DestinationTraveller.Add(new DestinationTraveller() {TravellerId = TravellerId, DestinationId = destination.DestinationId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = destination.DestinationId });
+    }
+
+    [HttpPost]
+    public ActionResult DeleteTraveller(int joinId, int id)
+    {
+      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == joinId);
+      _db.DestinationTraveller.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = id });
     }
   }
 }

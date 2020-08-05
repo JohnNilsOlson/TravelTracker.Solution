@@ -17,8 +17,14 @@ else
   @foreach(var join in Model.Travellers)
   {
     <h3>@Html.ActionLink($"{join.Traveller.Name}", "Details", "Travellers", new { id = join.Traveller.TravellerId })</h3>
+    @using (Html.BeginForm("DeleteTraveller", "Destinations", new { id = Model.DestinationId }))
+    {
+      @Html.Hidden("joinId", @join.DestinationTravellerId)
+      <input type="submit" value="Delete" class="btn btn-outline-dark" />
+    }
   }
 }
 <hr/>
+<h5>@Html.ActionLink("Add Traveller to this Destination", "AddTraveller", new { id = Model.DestinationId })</h5>
 <h5>@Html.ActionLink("Edit Destination", "Edit", new { id = Model.DestinationId })</h5>
 <h5>@Html.ActionLink("Remove Destination", "Delete", new { id = Model.DestinationId })</h5>

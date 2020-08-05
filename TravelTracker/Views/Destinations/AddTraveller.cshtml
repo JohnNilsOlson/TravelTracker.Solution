@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelTracker.Models.Destination
+<h1>@Html.Label($"Add a Traveller for {Model.CityName}")</h1>
+@using (Html.BeginForm())
+{
+  <div class="form-group">
+    @Html.HiddenFor(model => model.DestinationId)
+    @Html.Label("Select Traveller")
+    @Html.DropDownList("TravellerId", null, new { @class="form-control"})
+  </div>
+  <input type="submit" value="Add new Traveller" class="btn btn-outline-dark"/>
+}
+<hr />
+<h5>@Html.ActionLink("Back to Destination Details", "Details", new { id = Model.DestinationId })</h5>

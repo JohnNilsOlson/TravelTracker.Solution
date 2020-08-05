@@ -91,5 +91,14 @@ namespace TravelTracker.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = traveller.TravellerId });
     }
+
+    [HttpPost]
+    public ActionResult DeleteDestination(int joinId, int id)
+    {
+      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == joinId);
+      _db.DestinationTraveller.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = id });
+    }
   }
 }
