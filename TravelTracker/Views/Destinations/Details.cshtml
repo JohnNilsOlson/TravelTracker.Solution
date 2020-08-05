@@ -9,14 +9,14 @@
 
 @if (@Model.Travellers.Count == 0)
 {
-  <h3>No Travellers have Visited this Destination</h3>
+  <h3>No Travellers have Visited this Destination!</h3>
 }
 else
 {
-  <h3>Visited By</h3>
+  <h5>Visited By</h5>
   @foreach(var join in Model.Travellers)
   {
-    <h3>@join.Traveller.Name</h3>
+    <h3>@Html.ActionLink($"{join.Traveller.Name}", "Details", "Travellers", new { id = join.Traveller.TravellerId })</h3>
   }
 }
 <hr/>

@@ -4,28 +4,25 @@
 
 @model TravelTracker.Models.Traveller
 
-<h2>Traveller Details</h2>
+<h3>@Html.Label($"{Model.Name}'s Details")</h3>
 <hr />
-<h3>@Html.DisplayFor(model => model.Name)</h3>
 
 @if(@Model.Destinations.Count == 0)
 {
-  <p>This Traveller has not been to any Destinations</p>
+  <h3>This Traveller Has Not Visited Any Destinations</h3>
 }
 else
 {
-  <h4>Destinations this Traveller has visited:</h4>
-  <ul>
-    @foreach (var join in Model.Destinations)
+  <h5>Destinations Visited</h5>
+  @foreach (var join in Model.Destinations)
+  {
+    <h3>@Html.ActionLink($"{join.Destination.CityName}", "Details", "Destinations", new { id = join.Destination.DestinationId })</h3>
+    @using (Html.BeginForm("DeleteDestination", "Travellers", new { id = Model.TravellerId }))
     {
-      <li>@join.Destination.CityName</li>
-      @using (Html.BeginForm("DeleteDestination", "Travellers", new { id = Model.TravellerId }))
-      {
-        @Html.Hidden("joinId", @join.DestinationTravellerId)
-        <input type="submit" value="Delete" class="btn btn-outline-dark" />
-      }
+      @Html.Hidden("joinId", @join.DestinationTravellerId)
+      <input type="submit" value="Delete" class="btn btn-outline-dark" />
     }
-  </ul>
+  }
 }
 <hr />
 <h5>@Html.ActionLink("Back to Travellers", "Index")</h5>
