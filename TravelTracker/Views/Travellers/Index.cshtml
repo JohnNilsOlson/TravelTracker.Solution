@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TravelTracker.Models
+@model List<TravelTracker.Models.Traveller>;
+
+<h1>Travellers</h1>
+<hr />
+@if (@Model.Count == 0)
+{
+  <h3>No Travellers Have Been Added Yet!</h3>
+}
+
+<ul>
+@foreach (Traveller traveller in Model)
+{
+  <li>@Html.ActionLink($"{traveller.Name}","Details", new { id = traveller.TravellerId})</li>
+}
+</ul>
+<hr />
+<h3>@Html.ActionLink("Add new Traveller", "Create")</h3>
+<h3>@Html.ActionLink("Home", "Index", "Home")</h3>
