@@ -8,6 +8,6 @@ namespace TravelTracker.Models
     public DbSet<Traveller> Travellers { get; set; }
     public DbSet<DestinationTraveller> DestinationTraveller { get; set; }
 
-    public TravelTackerContext(DbContextOptions options) : base(options) { }
+    public TravelTrackerContext(DbContextOptions options) : base(options) { }
   }
 }

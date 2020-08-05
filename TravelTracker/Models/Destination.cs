@@ -11,6 +11,6 @@ namespace TravelTracker.Models
 
     public int DestinationId { get; set; }
     public string CityName { get; set; }
-    public virtual IColletion<DestinationTraveller> Travellers { get; set; }
+    public virtual ICollection<DestinationTraveller> Travellers { get; set; }
   }
 }
