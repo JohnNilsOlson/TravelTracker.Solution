@@ -18,5 +18,18 @@ namespace TravelTracker.Controllers
       List<Destination> model = _db.Destinations.ToList();
       return View(model);
     }
+    
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Destination destination)
+    {
+      _db.Destinations.Add(destination);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

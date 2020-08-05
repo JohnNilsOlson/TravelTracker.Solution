@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelTracker.Models.Destination
+
+<h3>Add a new Destination</h3>
+@using (@Html.BeginForm())
+{
+  <div class="form-group">
+    @Html.Label("City Name")
+    @Html.TextBoxFor(model => model.CityName, new {@class="form-control"})
+  </div>
+  <input type="submit" value="Add a new Destination" class="btn btn-outline-dark">
+}
+<hr />
+<h5>@Html.ActionLink("Show all Destinations", "Index")</h5>
