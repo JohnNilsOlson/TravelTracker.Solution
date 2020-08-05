@@ -6,10 +6,14 @@
 <h1>@Html.Label($"Add a Traveller for {Model.CityName}")</h1>
 @using (Html.BeginForm())
 {
+  @Html.HiddenFor(model => model.DestinationId)
   <div class="form-group">
-    @Html.HiddenFor(model => model.DestinationId)
     @Html.Label("Select Traveller")
     @Html.DropDownList("TravellerId", null, new { @class="form-control"})
+  </div>
+  <div class="form-group">
+    <label for="visitDate">Date of Visit</label>
+    <input type="date" name="visitDate" id="visitDate" class="form-control" required=true />
   </div>
   <input type="submit" value="Add new Traveller" class="btn btn-outline-dark"/>
 }

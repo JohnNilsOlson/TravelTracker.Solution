@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace TravelTracker.Controllers
 {
@@ -82,11 +83,11 @@ namespace TravelTracker.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddDestination(Traveller traveller, int DestinationId)
+    public ActionResult AddDestination(Traveller traveller, int DestinationId, DateTime visitDate)
     {
       if (DestinationId != 0)
       {
-        _db.DestinationTraveller.Add(new DestinationTraveller() {DestinationId = DestinationId, TravellerId = traveller.TravellerId });
+        _db.DestinationTraveller.Add(new DestinationTraveller() {DestinationId = DestinationId, TravellerId = traveller.TravellerId, VisitDate = visitDate });
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = traveller.TravellerId });
