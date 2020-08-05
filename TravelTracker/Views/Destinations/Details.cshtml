@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelTracker.Models.Destination
+
+<h3>@Html.Label($"{Model.CityName} Details")</h3>
+<hr />
+
+@if (@Model.Travellers.Count == 0)
+{
+  <h3>No Travellers have Visited this Destination</h3>
+}
+else
+{
+  <h3>Visited By</h3>
+  @foreach(var join in Model.Travellers)
+  {
+    <h3>@join.Traveller.Name</h3>
+  }
+}
+<hr/>
+<h5>@Html.ActionLink("Edit Destination", "Edit", new { id = Model.DestinationId })</h5>
+<h5>@Html.ActionLink("Remove Destination", "Delete")</h5>
