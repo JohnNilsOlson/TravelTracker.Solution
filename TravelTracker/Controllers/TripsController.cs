@@ -10,7 +10,7 @@ namespace TravelTracker.Controllers
 {
   public class TripsController : Controller
   {
-    private readonly TravelTrackerContext _db;"
+    private readonly TravelTrackerContext _db;
 
     public TripsController(TravelTrackerContext db)
     {
@@ -22,8 +22,19 @@ namespace TravelTracker.Controllers
       return View();
     }
 
-    
-    
+    public ActionResult SoloCreate()
+    {
+      ViewBag.TravellerId = new SelectList(_db.Travellers, "TravellerId", "Name");
+      ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "CityName");
+      return View();
+    }
+
+    public ActionResult GroupCreate()
+    {
+      ViewBag.ClubId = new SelectList(_db.Clubs, "ClubId", "Name");
+      ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "CityName");
+      return View();
+    }
 
     [HttpPost]
     public ActionResult SoloCreate(Trip trip)

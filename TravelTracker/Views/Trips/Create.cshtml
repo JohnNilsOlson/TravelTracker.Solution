@@ -4,11 +4,4 @@
 
 <h3>Add a Trip</h3>
 <hr />
-@using (@Html.BeginForm("SoloCreate"))
-{
-  <input type="submit" value="Solo" class="btn btn-outline-dark" />
-}
-@using (@Html.BeginForm("GroupCreate"))
-{
-  <input type="submit" value="Group" class="btn btn-outline-dark" >
-}
+<h5>@Html.ActionLink("Solo Trip", "SoloCreate") | @Html.ActionLink("Group Trip", "GroupCreate")</h5>
