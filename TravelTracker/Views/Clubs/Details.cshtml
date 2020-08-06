@@ -12,6 +12,12 @@
   <h3>This club has not made any trips!</h3>
 }
 <hr/>
+<h3>Members</h3>
+@foreach(var join in Model.Members)
+{
+  <h5>@Html.Label($"{join.Traveller.Name}")</h5>
+} 
+<hr/>
 <h5>@Html.ActionLink("Add Traveller to this Club", "AddTraveller", new { id = Model.ClubId })</h5>
 <h5>@Html.ActionLink("Edit Club", "Edit", new { id = Model.ClubId })</h5>
 <h5>@Html.ActionLink("Remove Club", "Delete", new { id = Model.ClubId })</h5>

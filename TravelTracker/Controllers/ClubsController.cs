@@ -40,7 +40,9 @@ namespace TravelTracker.Controllers
     {
       var thisClub = _db.Clubs
         .Include(club => club.Trips)
-        .ThenInclude(join => join.Destination)
+        .Include(club => club.Members)
+        .ThenInclude(join => join.Traveller)
+        // .ThenInclude(join => join.Destination)
         // .ThenInclude(join => join.Traveller)
         .FirstOrDefault(club => club.ClubId == id);
       return View(thisClub);
