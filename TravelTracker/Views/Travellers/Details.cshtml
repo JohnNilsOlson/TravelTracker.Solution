@@ -7,24 +7,24 @@
 <h3>@Html.Label($"{Model.Name}'s Details")</h3>
 <hr />
 
-@if(@Model.Destinations.Count == 0)
+@if(@Model.Trips.Count == 0)
 {
   <h3>This Traveller Has Not Visited Any Destinations</h3>
 }
 else
 {
   <h5>Destinations Visited</h5>
-  @foreach (var join in Model.Destinations)
+  @foreach (var join in Model.Trips)
   {
     <h3>@Html.ActionLink($"{join.Destination.CityName}", "Details", "Destinations", new { id = join.Destination.DestinationId })</h3>
     <h5>@Html.Label(join.StartDate.ToString("MMMM d, yyyy")) - @Html.Label(join.EndDate.ToString("MMMM d, yyyy"))</h5>
-    <h5>@Html.ActionLink("Edit", "Edit", "DestinationTravellers", new { id = join.DestinationTravellerId}) | @Html.ActionLink("Delete", "Delete", "DestinationTravellers", new {id = join.DestinationTravellerId })</h5>
+    <h5>@Html.ActionLink("Edit", "Edit", "Trips", new { id = join.TripId}) | @Html.ActionLink("Delete", "Delete", "Trips", new {id = join.TripId })</h5>
   }
 }
 
 <hr />
 <h5>@Html.ActionLink("Back to Travellers", "Index")</h5>
-<h5>@Html.ActionLink("Add Destination to this Traveller", "Create", "DestinationTravellers", new { id = Model.TravellerId })</h5>
+<h5>@Html.ActionLink("Add Destination to this Traveller", "Create", "Trips", new { id = Model.TravellerId })</h5>
 <h5>@Html.ActionLink("Edit Traveller", "Edit", new { id = Model.TravellerId })</h5>
 <h5>@Html.ActionLink("Delete Traveller", "Delete", new { id = Model.TravellerId })</h5>
 <h5>@Html.ActionLink("Back Home", "Index", "Home")</h5>

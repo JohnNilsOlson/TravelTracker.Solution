@@ -8,11 +8,11 @@ using System;
 
 namespace TravelTracker.Controllers
 {
-  public class DestinationTravellersController : Controller
+  public class TripsController : Controller
   {
     private readonly TravelTrackerContext _db;
 
-    public DestinationTravellersController(TravelTrackerContext db)
+    public TripsController(TravelTrackerContext db)
     {
       _db = db;
     }
@@ -25,38 +25,38 @@ namespace TravelTracker.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(DestinationTraveller destinationTraveller)
+    public ActionResult Create(Trip trip)
     {
-      _db.DestinationTraveller.Add(destinationTraveller);
+      _db.Trips.Add(trip);
       _db.SaveChanges();
       return RedirectToAction("Index", "Destinations");
     }
 
     public ActionResult Edit(int id)
     {
-      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == id);
+      var joinEntry = _db.Trips.FirstOrDefault(entry => entry.TripId == id);
       return View(joinEntry);
     }
 
     [HttpPost]
-    public ActionResult Edit(DestinationTraveller destinationTraveller)
+    public ActionResult Edit(Trip trip)
     {
-      _db.Entry(destinationTraveller).State = EntityState.Modified;
+      _db.Entry(trip).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }
 
     public ActionResult Delete(int id)
     {
-      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == id);
+      var joinEntry = _db.Trips.FirstOrDefault(entry => entry.TripId == id);
       return View(joinEntry);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == id);
-      _db.DestinationTraveller.Remove(joinEntry);
+      var joinEntry = _db.Trips.FirstOrDefault(entry => entry.TripId == id);
+      _db.Trips.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }

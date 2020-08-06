@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace TravelTracker.Models
 {
-  public class Traveller
+  public class Club
   {
-    public Traveller()
+    public Club()
     {
       this.Trips = new HashSet<Trip>();
     }
-    public int TravellerId { get; set; }
+    public int ClubId { get; set; }
     public string Name { get; set; }
     public ICollection<Trip> Trips { get; }
   }

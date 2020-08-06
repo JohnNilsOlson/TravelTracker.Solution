@@ -40,7 +40,7 @@ namespace TravelTracker.Controllers
     public ActionResult Details(int id)
     {
       var thisTraveller = _db.Travellers
-        .Include(traveller => traveller.Destinations)
+        .Include(traveller => traveller.Trips)
         .ThenInclude(join => join.Destination)
         .FirstOrDefault(traveller => traveller.TravellerId == id);
       return View(thisTraveller);

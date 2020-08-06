@@ -2,13 +2,13 @@
   Layout = "_Layout";
 }
 
-@model TravelTracker.Models.DestinationTraveller;
+@model TravelTracker.Models.Trip;
 
 <h3>Edit Trip Details</h3>
 <hr />
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.DestinationTravellerId)
+  @Html.HiddenFor(model => model.TripId)
   @Html.HiddenFor(model => model.TravellerId)
   @Html.HiddenFor(model => model.DestinationId)
   <div class="form-group">

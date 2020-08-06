@@ -6,11 +6,11 @@ namespace TravelTracker.Models
   {
     public Destination()
     {
-      this.Travellers = new HashSet<DestinationTraveller>();
+      this.Trips = new HashSet<Trip>();
     }
 
     public int DestinationId { get; set; }
     public string CityName { get; set; }
-    public virtual ICollection<DestinationTraveller> Travellers { get; set; }
+    public virtual ICollection<Trip> Trips { get; set; }
   }
 }

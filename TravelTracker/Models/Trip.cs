@@ -2,11 +2,13 @@ using System;
 
 namespace TravelTracker.Models
 {
-  public class DestinationTraveller
+  public class Trip
   {
-    public int DestinationTravellerId { get; set; }
+    public int TripId { get; set; }
     public int DestinationId { get; set; }
     public int TravellerId { get; set; }
+    public int ClubId { get; set; }
+    public Club Club { get; set; }
     public Traveller Traveller { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
