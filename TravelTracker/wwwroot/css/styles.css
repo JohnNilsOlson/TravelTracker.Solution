@@ -15,3 +15,13 @@ body {
 .nav {
   background-color: rgba(245, 245, 245, 0.75);
 }
+
+div#footer {
+  position:fixed;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  background:rgba(245, 245, 245, 0.55);
+  padding:8px;
+  text-align: center;
+}

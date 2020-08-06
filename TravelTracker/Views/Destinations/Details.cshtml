@@ -18,7 +18,7 @@ else
   {
     <h3>@Html.ActionLink($"{join.Traveller.Name}", "Details", "Travellers", new { id = join.Traveller.TravellerId })</h3>
     <h5>@Html.Label(join.StartDate.ToString("MMMM d, yyyy")) - @Html.Label(join.EndDate.ToString("MMMM d, yyyy"))</h5>
-    @using (Html.BeginForm("DeleteTraveller", "Destinations", new { id = Model.DestinationId }))
+    @using (Html.BeginForm("Delete", "DestinationTravellers", new { id = Model.DestinationId }))
     {
       @Html.Hidden("joinId", @join.DestinationTravellerId)
       <input type="submit" value="Delete" class="btn btn-outline-dark" />
@@ -26,6 +26,6 @@ else
   }
 }
 <hr/>
-<h5>@Html.ActionLink("Add Traveller to this Destination", "AddTraveller", new { id = Model.DestinationId })</h5>
+<h5>@Html.ActionLink("Add Traveller to this Destination", "Create", "DestinationTravellers", new { id = Model.DestinationId })</h5>
 <h5>@Html.ActionLink("Edit Destination", "Edit", new { id = Model.DestinationId })</h5>
 <h5>@Html.ActionLink("Remove Destination", "Delete", new { id = Model.DestinationId })</h5>

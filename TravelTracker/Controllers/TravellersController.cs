@@ -74,46 +74,5 @@ namespace TravelTracker.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
-    public ActionResult AddDestination(int id)
-    {
-      var thisTraveller = _db.Travellers.FirstOrDefault(traveller => traveller.TravellerId == id);
-      ViewBag.DestinationId = new SelectList(_db.Destinations, "DestinationId", "CityName");
-      return View(thisTraveller);
-    }
-
-    [HttpPost]
-    public ActionResult AddDestination(Traveller traveller, int DestinationId, DateTime startDate, DateTime endDate)
-    {
-      if (DestinationId != 0)
-      {
-        _db.DestinationTraveller.Add(new DestinationTraveller() {DestinationId = DestinationId, TravellerId = traveller.TravellerId, StartDate = startDate, EndDate = endDate });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = traveller.TravellerId });
-    }
-
-    [HttpPost]
-    public ActionResult DeleteDestination(int joinId, int id)
-    {
-      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == joinId);
-      _db.DestinationTraveller.Remove(joinEntry);
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = id });
-    }
-
-    public ActionResult EditDestination(int id)
-    {
-      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == id);
-      return View(joinEntry);
-    }
-
-    [HttpPost]
-    public ActionResult EditConfirmed(DestinationTraveller joinEntry)
-    {
-      _db.Entry(joinEntry).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
   }
 }
