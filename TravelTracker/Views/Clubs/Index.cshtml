@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TravelTracker.Models;
+@model List<TravelTracker.Models.Club>;
+
+<h3>Clubs</h3>
+<hr/>
+@if (@Model.Count == 0)
+{
+  <h3>No Clubs Have Been Added Yet!</h3>
+}
+
+@foreach (Club club in Model)
+{
+  <h3>@Html.ActionLink($"{club.Name}", "Details", new { id = club.ClubId })</h3>
+}
+<hr />
+<h5>@Html.ActionLink("Add a new Club", "Create")</h5>

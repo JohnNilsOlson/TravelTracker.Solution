@@ -41,6 +41,7 @@ namespace TravelTracker.Controllers
       var thisDestination = _db.Destinations
         .Include(destination => destination.Trips)
         .ThenInclude(join => join.Traveller)
+        // .ThenInclude(join => join.Club)
         .FirstOrDefault(destination => destination.DestinationId == id);
       return View(thisDestination);
     }
