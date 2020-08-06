@@ -8,6 +8,7 @@ namespace TravelTracker.Models
     public DbSet<Traveller> Travellers { get; set; }
     public DbSet<Club> Clubs { get; set; }
     public DbSet<Trip> Trips { get; set; }
+    public DbSet<ClubMember> ClubMember { get; set; }
 
     public TravelTrackerContext(DbContextOptions options) : base(options) { }
   }

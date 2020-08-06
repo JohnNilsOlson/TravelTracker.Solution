@@ -74,5 +74,23 @@ namespace TravelTracker.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult AddTraveller(int id)
+    {
+      var thisClub = _db.Clubs.FirstOrDefault(club => club.ClubId == id);
+      ViewBag.TravellerId = new SelectList(_db.Travellers, "TravellerId", "Name");
+      return View(thisClub);
+    }
+
+    [HttpPost]
+    public ActionResult AddTraveller(Club club, int TravellerId)
+    {
+      if (TravellerId != 0)
+      {
+        _db.ClubMember.Add(new ClubMember() { TravellerId = TravellerId, ClubId = club.ClubId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = club.ClubId });
+    }
   }
 }
