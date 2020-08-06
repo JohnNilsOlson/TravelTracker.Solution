@@ -17,7 +17,7 @@ else
   @foreach(var join in Model.Travellers)
   {
     <h3>@Html.ActionLink($"{join.Traveller.Name}", "Details", "Travellers", new { id = join.Traveller.TravellerId })</h3>
-    <h5>@Html.Label("{0:MM/dd/yyyy}", $"{join.VisitDate}")</h5>
+    <h5>@Html.Label(join.StartDate.ToString("MMMM d, yyyy")) - @Html.Label(join.EndDate.ToString("MMMM d, yyyy"))</h5>
     @using (Html.BeginForm("DeleteTraveller", "Destinations", new { id = Model.DestinationId }))
     {
       @Html.Hidden("joinId", @join.DestinationTravellerId)

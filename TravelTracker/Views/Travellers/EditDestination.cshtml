@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelTracker.Models.DestinationTraveller;
+
+<h3>Edit Trip Details</h3>
+<hr />
+@using (Html.BeginForm("EditConfirmed", "Travellers"))
+{
+  @Html.HiddenFor(model => model.DestinationTravellerId)
+  @Html.HiddenFor(model => model.TravellerId)
+  @Html.HiddenFor(model => model.DestinationId)
+  <div class="form-group">
+    <label for="StartDate">Start of Visit</label>
+    <input type="date" name="StartDate" id="StartDate" class="form-control" required=true />
+  </div>
+  <div class="form-group">
+    <label for="EndDate">End of Visit</label>
+    <input type="date" name="EndDate" id="EndDate" class="form-control" required=true />
+  </div>
+  <input type="submit" value="Edit Trip" class="btn btn-outline-dark"/>
+}
+<hr />
+<h5>@Html.ActionLink("Back to Travellers", "Index")</h5>

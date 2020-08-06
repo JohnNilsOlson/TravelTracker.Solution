@@ -82,11 +82,11 @@ namespace TravelTracker.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddTraveller(Destination destination, int TravellerId, DateTime visitDate)
+    public ActionResult AddTraveller(Destination destination, int TravellerId, DateTime startDate, DateTime endDate)
     {
       if (TravellerId != 0)
       {
-        _db.DestinationTraveller.Add(new DestinationTraveller() {TravellerId = TravellerId, DestinationId = destination.DestinationId, VisitDate = visitDate });
+        _db.DestinationTraveller.Add(new DestinationTraveller() {TravellerId = TravellerId, DestinationId = destination.DestinationId, StartDate = startDate, EndDate = endDate });
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = destination.DestinationId });

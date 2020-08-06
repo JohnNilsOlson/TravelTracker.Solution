@@ -83,11 +83,11 @@ namespace TravelTracker.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddDestination(Traveller traveller, int DestinationId, DateTime visitDate)
+    public ActionResult AddDestination(Traveller traveller, int DestinationId, DateTime startDate, DateTime endDate)
     {
       if (DestinationId != 0)
       {
-        _db.DestinationTraveller.Add(new DestinationTraveller() {DestinationId = DestinationId, TravellerId = traveller.TravellerId, VisitDate = visitDate });
+        _db.DestinationTraveller.Add(new DestinationTraveller() {DestinationId = DestinationId, TravellerId = traveller.TravellerId, StartDate = startDate, EndDate = endDate });
       }
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = traveller.TravellerId });
@@ -100,6 +100,20 @@ namespace TravelTracker.Controllers
       _db.DestinationTraveller.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = id });
+    }
+
+    public ActionResult EditDestination(int id)
+    {
+      var joinEntry = _db.DestinationTraveller.FirstOrDefault(entry => entry.DestinationTravellerId == id);
+      return View(joinEntry);
+    }
+
+    [HttpPost]
+    public ActionResult EditConfirmed(DestinationTraveller joinEntry)
+    {
+      _db.Entry(joinEntry).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
